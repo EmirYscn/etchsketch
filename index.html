@@ -16,7 +16,20 @@
             Color:
             <input type="color" name="color-picker" id="color-picker" />
           </button>
-          <button class="btn grid-size">Change Grid</button>
+          <button class="btn grid-number">
+            <input
+              type="range"
+              name="grid-number"
+              id="grid-number"
+              min="2"
+              max="100"
+              value="16"
+              oninput="this.nextElementSibling.value = this.value"
+            />
+            <output>16</output>
+            <p class="current-grid-size">Current Grid Size: 16x16</p>
+            <button class="btn grid-size">Change Grid</button>
+          </button>
           <button class="btn erase-btn">Erase</button>
         </div>
       </main>

@@ -8,13 +8,13 @@ const gridButton = document.querySelector(".grid-size");
 const eraseButton = document.querySelector(".erase-btn");
 const colorButton = document.querySelector(".color-picker");
 const colorInput = document.querySelector("#color-picker");
+const gridInput = document.querySelector("#grid-number");
+const gridSizePara = document.querySelector(".current-grid-size");
 
 gridButton.addEventListener("click", () => {
-  let gridSize = prompt("What should be the number of squares per side?");
-  if (gridSize > 100) {
-    alert("Too much square, must be less than 100");
-    return;
-  }
+  let gridSize = gridInput.value;
+  gridSizePara.textContent = `Current Grid Size: ${gridSize}x${gridSize}`;
+
   createGrid(gridSize);
 });
 
@@ -24,6 +24,11 @@ colorButton.addEventListener("click", () => {
 
 function drawing() {
   const columns = document.querySelectorAll(".column");
+  // columns.forEach((element) => {
+  //   element.addEventListener("mousedown", () => {
+  //     element.style.backgroundColor = drawColor;
+  //   });
+  // });
   columns.forEach((element) => {
     element.addEventListener("mouseover", () => {
       element.style.backgroundColor = drawColor;
