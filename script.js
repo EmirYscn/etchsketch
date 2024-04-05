@@ -4,19 +4,22 @@ const initialGridSize = 16;
 let drawColor = "rgb(0, 0, 0)";
 
 const canvas = document.querySelector(".canvas");
-const buttonCanvas = document.querySelector(".grid-size");
+const gridButton = document.querySelector(".grid-size");
 const eraseButton = document.querySelector(".erase-btn");
+const colorButton = document.querySelector(".color-picker");
+const colorInput = document.querySelector("#color-picker");
 
-buttonCanvas.addEventListener("click", () => {
-  let squareNum = prompt("What should be the number of squares per side?");
-  if (squareNum > 100) {
-    alert("Too much square\nMust be less than 100");
+gridButton.addEventListener("click", () => {
+  let gridSize = prompt("What should be the number of squares per side?");
+  if (gridSize > 100) {
+    alert("Too much square, must be less than 100");
     return;
   }
-  while (canvas.firstChild) {
-    canvas.removeChild(canvas.firstChild);
-  }
-  createGrid(squareNum);
+  createGrid(gridSize);
+});
+
+colorButton.addEventListener("click", () => {
+  drawColor = colorInput.value;
 });
 
 function drawing() {
@@ -33,8 +36,13 @@ function drawing() {
     });
   });
 }
+function clearGrid() {
+  canvas.innerHTML = "";
+}
 
 function createGrid(size) {
+  clearGrid();
+
   for (let i = 0; i < size; i++) {
     const row = document.createElement("div");
     row.classList.add("row");
