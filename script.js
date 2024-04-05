@@ -1,10 +1,11 @@
 let canvasWidth = 800;
 let canvasHeight = 600;
-const initialGridSize = 100;
+const initialGridSize = 16;
 let drawColor = "rgb(0, 0, 0)";
 
 const canvas = document.querySelector(".canvas");
-const buttonCanvas = document.querySelector(".canvas-size");
+const buttonCanvas = document.querySelector(".grid-size");
+const eraseButton = document.querySelector(".erase-btn");
 
 buttonCanvas.addEventListener("click", () => {
   let squareNum = prompt("What should be the number of squares per side?");
@@ -18,32 +19,37 @@ buttonCanvas.addEventListener("click", () => {
   createGrid(squareNum);
 });
 
-function createRow(size) {
+function drawing() {
+  const columns = document.querySelectorAll(".column");
+  columns.forEach((element) => {
+    element.addEventListener("mouseover", () => {
+      element.style.backgroundColor = drawColor;
+    });
+  });
+
+  eraseButton.addEventListener("click", () => {
+    columns.forEach((element) => {
+      element.style.backgroundColor = "#fff";
+    });
+  });
+}
+
+function createGrid(size) {
   for (let i = 0; i < size; i++) {
-    const divRow = document.createElement("div");
-    divRow.style.height = "100%";
-    divRow.style.width = "100%";
-    divRow.style.display = "flex";
-    canvas.appendChild(divRow);
+    const row = document.createElement("div");
+    row.classList.add("row");
+    canvas.appendChild(row);
+
     for (let j = 0; j < size; j++) {
-      divRow.appendChild(createDiv(size));
+      const column = document.createElement("div");
+      column.classList.add("column");
+      let height = (canvasHeight / size).toString() + "px";
+      let width = (canvasWidth / size).toString() + "px";
+      column.style.height = height;
+      column.style.width = width;
+      row.appendChild(column);
     }
   }
+  drawing();
 }
-function createDiv(gridNum) {
-  const div = document.createElement("div");
-  let height = (canvasHeight / gridNum).toString() + "px";
-  let width = (canvasWidth / gridNum).toString() + "px";
-  div.style.height = height;
-  div.style.width = width;
-  div.addEventListener("mouseover", () => {
-    div.style.backgroundColor = drawColor;
-  });
-  return div;
-}
-
-function createGrid(gridNum) {
-  createRow(gridNum);
-}
-
 createGrid(initialGridSize);
