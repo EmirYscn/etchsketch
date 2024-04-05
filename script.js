@@ -10,6 +10,7 @@ const colorButton = document.querySelector(".color-picker");
 const colorInput = document.querySelector("#color-picker");
 const gridInput = document.querySelector("#grid-number");
 const gridSizePara = document.querySelector(".current-grid-size");
+const randomColorButton = document.querySelector(".random-color");
 
 gridButton.addEventListener("click", () => {
   let gridSize = gridInput.value;
@@ -22,16 +23,24 @@ colorButton.addEventListener("click", () => {
   drawColor = colorInput.value;
 });
 
+let isRandom = false;
+
+randomColorButton.addEventListener("click", () => {
+  isRandom = !isRandom;
+  randomColorButton.textContent = `Random Color: ${isRandom ? "On" : "Off"}`;
+});
+
+function getRandomColor() {
+  return `rgb(${Math.floor(Math.random() * 255)},${Math.floor(
+    Math.random() * 255
+  )},${Math.floor(Math.random() * 255)})`;
+}
+
 function drawing() {
   const columns = document.querySelectorAll(".column");
-  // columns.forEach((element) => {
-  //   element.addEventListener("mousedown", () => {
-  //     element.style.backgroundColor = drawColor;
-  //   });
-  // });
   columns.forEach((element) => {
     element.addEventListener("mouseover", () => {
-      element.style.backgroundColor = drawColor;
+      element.style.backgroundColor = isRandom ? getRandomColor() : drawColor;
     });
   });
 

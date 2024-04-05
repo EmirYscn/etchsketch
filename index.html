@@ -7,39 +7,42 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header class="header"><h1>Etch-a-Sketch</h1></header>
-    <div class="container">
-      <main class="main">
-        <div class="canvas"></div>
-        <div class="buttons">
-          <button class="btn color-picker">
-            Color:
-            <input type="color" name="color-picker" id="color-picker" />
-          </button>
-          <button class="btn grid-number">
-            <input
-              type="range"
-              name="grid-number"
-              id="grid-number"
-              min="2"
-              max="100"
-              value="16"
-              oninput="this.nextElementSibling.value = this.value"
-            />
-            <output>16</output>
-            <p class="current-grid-size">Current Grid Size: 16x16</p>
+    <div class="outer-container">
+      <header class="header"><h1>Etch-a-Sketch</h1></header>
+      <div class="container">
+        <main class="main">
+          <div class="canvas"></div>
+          <div class="buttons">
+            <button class="btn random-color">Random Color: Off</button>
+            <button class="btn color-picker">
+              Color:
+              <input type="color" name="color-picker" id="color-picker" />
+            </button>
+            <button class="btn grid-number">
+              <input
+                type="range"
+                name="grid-number"
+                id="grid-number"
+                min="2"
+                max="100"
+                value="16"
+                oninput="this.nextElementSibling.value = this.value"
+              />
+              <output>16</output>
+              <p class="current-grid-size">Current Grid Size: 16x16</p>
+            </button>
             <button class="btn grid-size">Change Grid</button>
-          </button>
-          <button class="btn erase-btn">Erase</button>
-        </div>
-      </main>
+            <button class="btn erase-btn">Erase</button>
+          </div>
+        </main>
+      </div>
+      <footer class="footer">
+        <p>EmirYscn</p>
+        <a href="https://github.com/EmirYscn/etchsketch" target="_blank"
+          >Github Repo</a
+        >
+      </footer>
     </div>
-    <footer class="footer">
-      <p>EmirYscn</p>
-      <a href="https://github.com/EmirYscn/etchsketch" target="_blank"
-        >Github Repo</a
-      >
-    </footer>
     <script src="script.js"></script>
   </body>
 </html>
